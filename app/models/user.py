@@ -18,6 +18,25 @@ class User(db.Model, UserMixin):
         user = cls.query.filter(db.and_(User.email==email,User.password==password)).first()
         return user,user and user.active
 
+    @classmethod
+    def exist_user(cls,email):
+        user = cls.query.filter(db.and_(User.email==email,User.active==True)).first()
+        return bool(user)
+
+    @classmethod
+    def get_user_from_email(cls,email):
+        user=cls.query.filter_by(email=email).first()
+        return user
+
+    @classmethod
+    def get_confirm_user(cls,code):
+        user=cls.query.filter(db.and_(User.reg_token==code,User.active==False)).first()
+        return user
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
 @lm.user_loader
 def load_user(userid):
         return User.query.get(userid)

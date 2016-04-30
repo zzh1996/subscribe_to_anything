@@ -1,11 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h3>Log in</h3>
-    <form method='post' action='/user/login/'>
+    <h3>Register new user</h3>
+    <form method='post' action='/user/register/'>
         {{ form.csrf_token }}
         {{ form.email.label }} {{ form.email() }}<br>
         {{ form.password.label }} {{ form.password() }}<br>
-        <button type='submit'>Log in</button>
+        {{ form.confirm_password.label }} {{ form.confirm_password() }}<br>
+        <button type='submit'>Register</button>
     </form>
-    <a href={{ url_for('user.register') }}>Register new user</a>
+
 {% endblock %}

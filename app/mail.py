@@ -1,9 +1,13 @@
 from . import app
 from flask_mail import Mail,Message
+import sys
 
 mail = Mail(app)
 
-def send_confirm_mail(email):
-    subject = 'Confirm code - Subscribe to anything'
-    msg = Message(subject=subject, html='123456', recipients=[email])
-    mail.send(msg)
+def send_mail(subject,html,email):
+    #msg = Message(subject=subject, html=html, recipients=[email])
+    #mail.send(msg)
+    print('TO:',email, file=sys.stderr)
+    print('Subject:',subject, file=sys.stderr)
+    print('HTML:',html, file=sys.stderr)
+

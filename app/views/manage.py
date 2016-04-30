@@ -9,7 +9,7 @@ manage= Blueprint('manage',__name__)
 @login_required
 def index():
     pages=current_user.pages
-    return render_template('manage.html',pages=pages)
+    return render_template('manage.html',user=current_user,pages=pages)
 
 @manage.route('/add/')
 @login_required

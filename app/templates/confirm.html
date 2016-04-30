@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h3>Confirm</h3>
+    <form method='post' action='/user/confirm/'>
+        {{ form.csrf_token }}
+        {{ form.code.label }} {{ form.code() }}<br>
+        <button type='submit'>Submit</button>
+    </form>
+
+{% endblock %}
