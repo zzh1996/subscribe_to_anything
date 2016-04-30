@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h3>Manage your subscriptions</h3>
+    <a href={{ url_for('manage.add') }}>New subscription</a><br>
+    Current subscriptions({{ pages|length }}):<br>
+    {% for p in pages %}
+    {{ p.name }} &nbsp; {{ p.url }} <br>
+    {% endfor %}
+
+{% endblock %}
