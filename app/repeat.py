@@ -1,6 +1,6 @@
 from threading import Timer, Lock
 
-class Repeat():
+class Repeater():
     def __init__(self, interval, function, *args, **kwargs):
         self._lock = Lock()
         self._timer = None

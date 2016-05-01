@@ -4,6 +4,7 @@
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager,current_user,user_logged_in,user_loaded_from_cookie
+import os
 
 app = Flask(__name__)
 app.config.from_object('config.default')
@@ -18,3 +19,7 @@ app.register_blueprint(home,url_prefix='')
 app.register_blueprint(manage,url_prefix='/manage')
 app.register_blueprint(user,url_prefix='/user')
 
+from app.daemon import *
+if not app.debug or os.environ.get("WERKZEUG_RUN_MAIN") == "true":
+    daemon=Daemon()
+    daemon.loadall()

@@ -30,6 +30,10 @@ class Page(db.Model):
         self.freq=freq
         self.user=user
 
+    @classmethod
+    def all(cls):
+        return cls.query.all()
+
     def save(self):
         db.session.add(self)
         db.session.commit()
