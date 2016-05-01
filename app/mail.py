@@ -5,8 +5,8 @@ import sys
 mail = Mail(app)
 
 def send_mail(subject,html,email):
-    #msg = Message(subject=subject, html=html, recipients=[email])
-    #mail.send(msg)
+    msg = Message(subject=subject, html=html, recipients=[email])
+    mail.send(msg)
     print('TO:',email, file=sys.stderr)
     print('Subject:',subject, file=sys.stderr)
     print('HTML:',html, file=sys.stderr)
