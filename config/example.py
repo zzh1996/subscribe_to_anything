@@ -2,6 +2,7 @@ SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://sta:sta@localhost/sta?charset=utf8'
 DEBUG=True
 SECRET_KEY = 'secret-key'
 
+MAIL_ENABLE = True
 MAIL_SERVER = 'localhost'
 MAIL_PORT = 25
 MAIL_USE_TLS = False

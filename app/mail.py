@@ -6,8 +6,9 @@ mail = Mail(app)
 
 def send_mail(subject,html,email):
     with app.app_context():
-        msg = Message(subject=subject, html=html, recipients=[email])
-        mail.send(msg)
+        if app.config['MAIL_ENABLE']:
+            msg = Message(subject=subject, html=html, recipients=[email])
+            mail.send(msg)
         print('TO:',email, file=sys.stderr)
         print('Subject:',subject, file=sys.stderr)
         print('HTML:',html, file=sys.stderr)

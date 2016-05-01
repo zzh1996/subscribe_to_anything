@@ -4,17 +4,20 @@ from app.mail import *
 import sys
 import time
 from termcolor import colored
+import difflib
 
 def now():
     return time.asctime(time.localtime(time.time()))
 
 def gendiff(oldtext,newtext,method):
+    d=difflib.Differ()
+    diff=d.compare(oldtext.splitlines(True),newtext.splitlines(True))
     if method=='all':
         return newtext
     elif method=='diff':
-        pass
+        return '\n'.join([line for line in diff if line[0] in ['+','-']])
     elif method=='new':
-        pass
+        return '\n'.join([line for line in diff if line[0]=='+'])
 
 def processtask(page,data):
     print(now()+' [Processing task] ',page.name,file=sys.stderr)
