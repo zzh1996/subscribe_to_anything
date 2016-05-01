@@ -1,0 +1,9 @@
+flask
+flask-WTF
+flask-SQLAlchemy
+flask-login
+flask-mail
+bs4
+termcolor
+flask-mysqldb
+
