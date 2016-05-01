@@ -1,6 +1,6 @@
 from flask_wtf import Form
-from wtforms import (StringField, PasswordField, RadioField, IntegerField )
-from wtforms.validators import (DataRequired,Email,EqualTo,URL)
+from wtforms import (StringField, PasswordField, RadioField, IntegerField)
+from wtforms.validators import (DataRequired,Email,EqualTo,URL,NumberRange)
 
 class AddForm(Form):
     name=StringField('Name',validators=[DataRequired()])
@@ -10,7 +10,7 @@ class AddForm(Form):
     cookie=StringField('Cookie')
     method=RadioField('Method',choices=[('GET','GET'),('POST','POST')])
     postdata=StringField('Post Data')
-    freq=IntegerField('Frequency',validators=[DataRequired()])
+    freq=IntegerField('Frequency',validators=[DataRequired(),NumberRange(1,100000)])
     watch_type=RadioField('Watch type',choices=[('change','change'),('keyword','keyword')])
     notify_content=RadioField('Notify content',choices=[('diff','diff'),('new','new'),('all','all')])
 

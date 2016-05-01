@@ -6,6 +6,7 @@
     Current subscriptions({{ pages|length }}):<br>
     {% for p in pages %}
     {{ p.name }} &nbsp; {{ p.url }}
+    <a href={{ url_for('manage.test',id=p.id) }}>Test</a>
     <a href={{ url_for('manage.edit',id=p.id) }}>Edit</a>
     <a href={{ url_for('manage.delete',id=p.id) }}>Delete</a>
 
