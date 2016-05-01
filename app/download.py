@@ -2,6 +2,8 @@ import requests,json
 from bs4 import BeautifulSoup
 
 def download(url,ua,referer,cookie,method,postdata):
+    if not ua:
+        ua='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.108 Safari/537.36'
     headers={'User-Agent':ua,'Referer':referer,'Cookie':cookie}
     if method=='POST':
         r=requests.post(url,headers=headers,data=json.loads(postdata),timeout=5)
