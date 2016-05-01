@@ -1,0 +1,21 @@
+{% from "_form.html" import render_field %}
+{% extends "layout.html" %}
+{% block content %}
+    <h3>Edit subscription</h3>
+    <form method='post' action={{ url_for('manage.edit',id=id) }}>
+        <dl>
+            {{ form.csrf_token }}
+            {{ render_field(form.name) }}
+            {{ render_field(form.url) }}
+            {{ render_field(form.ua) }}
+            {{ render_field(form.referer) }}
+            {{ render_field(form.cookie) }}
+            {{ render_field(form.method) }}
+            {{ render_field(form.postdata) }}
+            {{ render_field(form.freq) }}
+            {{ render_field(form.watch_type) }}
+            {{ render_field(form.notify_content) }}
+        </dl>
+        <button type='submit'>Submit</button>
+    </form>
+{% endblock %}

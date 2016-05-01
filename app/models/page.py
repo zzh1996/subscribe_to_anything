@@ -17,4 +17,19 @@ class Page(db.Model):
     freq = db.Column(db.Integer)
     user = db.relationship('User',backref=db.backref('pages'))
 
+    def __init__(self,name,url,postdata,ua,referer,cookie,method,watch_type,notify_content,freq,user):
+        self.name=name
+        self.url=url
+        self.postdata=postdata
+        self.ua=ua
+        self.referer=referer
+        self.cookie=cookie
+        self.method=method
+        self.watch_type=watch_type
+        self.notify_content=notify_content
+        self.freq=freq
+        self.user=user
 
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
