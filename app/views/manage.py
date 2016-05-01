@@ -43,8 +43,7 @@ def delete(id):
     page=Page.query.get(id)
     if not page or page.user!=current_user:
         return redirect(url_for('manage.index'))
-    db.session.delete(page)
-    db.session.commit()
+    page.delete()
     return redirect(url_for('manage.index'))
 
 @manage.route('/edit/<int:id>',methods=['POST','GET'])

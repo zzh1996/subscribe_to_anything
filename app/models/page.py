@@ -1,5 +1,8 @@
 from flask.ext.login import UserMixin
 from app import db
+from app.daemon import *
+import app
+from .user import *
 
 class Page(db.Model):
     __tablename__ = 'pages'
@@ -37,3 +40,14 @@ class Page(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+        app.dm.deletetask(self.id)
+        app.dm.addtask(self)
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+        app.dm.deletetask(self.id)
+
+    def email(self):
+        return load_user(self.user_id).email
+

@@ -20,6 +20,6 @@ app.register_blueprint(manage,url_prefix='/manage')
 app.register_blueprint(user,url_prefix='/user')
 
 from app.daemon import *
+dm=Daemon()
 if not app.debug or os.environ.get("WERKZEUG_RUN_MAIN") == "true":
-    daemon=Daemon()
-    daemon.loadall()
+    dm.loadall()
