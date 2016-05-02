@@ -9,10 +9,10 @@ class AddForm(Form):
     referer=StringField('Referer')
     cookie=StringField('Cookie')
     method=RadioField('Method',choices=[('GET','GET'),('POST','POST')])
-    postdata=StringField('Post Data')
-    freq=IntegerField('Frequency',validators=[DataRequired(),NumberRange(1,100000)])
-    watch_type=RadioField('Watch type',choices=[('change','change'),('keyword','keyword')])
-    notify_content=RadioField('Notify content',choices=[('diff','diff'),('new','new'),('all','all')])
+    postdata=StringField('Post Data(json)')
+    freq=IntegerField('Frequency(seconds)',validators=[DataRequired(),NumberRange(1,100000)])
+    watch_type=RadioField('Send mail when',choices=[('change','Page changes'),('keyword','Keyword detected (Not supported yet)')])
+    notify_content=RadioField('Mail content',choices=[('diff','Insertions and deletions (Diff)'),('new','New content'),('all','Entire new page')])
 
 class LoginForm(Form):
     email = StringField('Email',validators=[DataRequired()])

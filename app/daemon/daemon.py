@@ -31,7 +31,7 @@ def processtask(page,data):
     else:
         if data[0]!=text: #page changed!
             if page.watch_type=='change':
-                notify=gendiff(data[0],text,page.notify_content)
+                notify=page.url+'\n\n'+gendiff(data[0],text,page.notify_content)
                 send_mail(
                     page.name+' - subscribe to anything',
                     notify,
