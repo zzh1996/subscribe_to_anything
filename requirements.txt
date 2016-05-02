@@ -6,4 +6,4 @@ flask-mail
 bs4
 termcolor
 flask-mysqldb
-
+lxml

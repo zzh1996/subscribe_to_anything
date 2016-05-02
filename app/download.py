@@ -9,7 +9,7 @@ def download(url,ua,referer,cookie,method,postdata):
         r=requests.post(url,headers=headers,data=json.loads(postdata),timeout=5)
     else:
         r=requests.get(url,headers=headers,timeout=5)
-    soup=BeautifulSoup(r.content,"html5lib")
+    soup=BeautifulSoup(r.content,"lxml")
     for script in soup(["script", "style"]):
         script.extract()
     text=soup.get_text()
