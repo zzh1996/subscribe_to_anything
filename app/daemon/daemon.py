@@ -11,7 +11,7 @@ def now():
 
 def gendiff(oldtext,newtext,method):
     d=difflib.Differ()
-    diff=d.compare(oldtext.splitlines(True),newtext.splitlines(True))
+    diff=d.compare(oldtext.splitlines(),newtext.splitlines())
     if method=='all':
         return newtext
     elif method=='diff':
@@ -29,6 +29,7 @@ def processtask(page,data):
     if not data:
         data.append(text)
     else:
+        #print(text.splitlines(True),file=sys.stderr)
         if data[0]!=text: #page changed!
             if page.watch_type=='change':
                 notify=page.url+'\n\n'+gendiff(data[0],text,page.notify_content)
