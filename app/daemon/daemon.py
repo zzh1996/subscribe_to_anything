@@ -32,7 +32,7 @@ def processtask(page,data):
         #print(text.splitlines(True),file=sys.stderr)
         if data[0]!=text: #page changed!
             if page.watch_type=='change':
-                notify=page.url+'\n\n'+gendiff(data[0],text,page.notify_content)
+                notify=gendiff(data[0],text,page.notify_content)+'\n\n'+page.url
                 send_mail(
                     page.name+' - subscribe to anything',
                     notify,
