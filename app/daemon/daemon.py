@@ -1,4 +1,5 @@
-from app.repeat import *
+from .repeat import *
+from app import app
 from app.download import *
 from app.mail import *
 import sys
@@ -49,9 +50,11 @@ class Daemon():
 
     def addtask(self,page):
         data=[]
-        processtask(page,data)
-        #task=page,Repeater(page.freq*60,processtask,page,data)
-        task=page,Repeater(page.freq,processtask,page,data)
+        run_once(processtask,page,data)
+        freq=page.freq
+        if not app.config['FREQ_SECOND']:
+            freq=freq*60
+        task=page,Repeater(freq,processtask,page,data)
         task[1].start()
         self.tasks.append(task)
         print(colored('Add task','red'),page.name,file=sys.stderr)

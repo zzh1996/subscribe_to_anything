@@ -10,3 +10,6 @@ MAIL_USE_SSL = False
 MAIL_USERNAME = 'sta@mail.sqrt-1.me'
 MAIL_PASSWORD = ''
 MAIL_DEFAULT_SENDER = 'sta@mail.sqrt-1.me'
+
+FREQ_SECOND = False
+

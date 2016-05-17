@@ -28,3 +28,9 @@ class Repeater():
         self._stopped = True
         self._timer.cancel()
         self._lock.release()
+
+def run_once(function,*args,**kwargs):
+    timer=Timer(0,function,args,kwargs)
+    timer.setDaemon(True)
+    timer.start()
+

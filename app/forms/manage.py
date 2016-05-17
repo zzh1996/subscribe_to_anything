@@ -10,7 +10,7 @@ class AddForm(Form):
     cookie=StringField('Cookie')
     method=RadioField('Method',choices=[('GET','GET'),('POST','POST')])
     postdata=StringField('Post Data(json)')
-    freq=IntegerField('Frequency(seconds)',validators=[DataRequired(),NumberRange(1,100000)])
+    freq=IntegerField('Frequency(minutes)',validators=[DataRequired(),NumberRange(1,100000)])
     watch_type=RadioField('Send mail when',choices=[('change','Page changes'),('keyword','Keyword detected (Not supported yet)')])
     notify_content=RadioField('Mail content',choices=[('diff','Insertions and deletions (Diff)'),('new','New content'),('all','Entire new page')])
 
