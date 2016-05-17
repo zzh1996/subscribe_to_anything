@@ -3,6 +3,7 @@ from app import db
 from app.daemon import *
 import app
 from .user import *
+from datetime import datetime
 
 class Page(db.Model):
     __tablename__ = 'pages'
@@ -18,6 +19,8 @@ class Page(db.Model):
     watch_type = db.Column(db.Enum('change','keyword'))
     notify_content = db.Column(db.Enum('diff','new','all'))
     freq = db.Column(db.Integer)
+    last_check = db.Column(db.DateTime)
+    last_status = db.Column(db.Text)
     user = db.relationship('User',backref=db.backref('pages'))
 
     def __init__(self,name,url,postdata,ua,referer,cookie,method,watch_type,notify_content,freq,user):
@@ -47,6 +50,14 @@ class Page(db.Model):
         db.session.delete(self)
         db.session.commit()
         app.dm.deletetask(self.id)
+
+    def update_check(self,status):
+        page=self.query.get(self.id)
+        if page:
+            page.last_check=datetime.now()
+            page.last_status=status
+            db.session.add(page)
+            db.session.commit()
 
     def email(self):
         return load_user(self.user_id).email

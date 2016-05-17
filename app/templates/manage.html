@@ -4,12 +4,29 @@
     Current user: {{ user.email }} <a href={{ url_for('user.logout') }}>Log out</a><br><br>
     <a href={{ url_for('manage.add') }}>New subscription</a><br>
     Current subscriptions({{ pages|length }}):<br>
+    <table border=1 cellspacing=0>
+    <tr>
+        <th>Name</th>
+        <th>URL</th>
+        <th>Frequency(min)</th>
+        <th>Last check</th>
+        <th>Last status</th>
+        <th>Test</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
     {% for p in pages %}
-    {{ p.name }} &nbsp; {{ p.url }}
-    <a href={{ url_for('manage.test',id=p.id) }}>Test</a>
-    <a href={{ url_for('manage.edit',id=p.id) }}>Edit</a>
-    <a href={{ url_for('manage.delete',id=p.id) }}>Delete</a>
-
-    <br>
+    <tr>
+        <td>{{ p.name }}</td>
+        <td>{{ p.url }}</td>
+        <td>{{ p.freq}}</td>
+        <td>{{ p.last_check }}</td>
+        <td>{{ p.last_status }}</td>
+        <td><a href={{ url_for('manage.test',id=p.id) }}>Test</a></td>
+        <td><a href={{ url_for('manage.edit',id=p.id) }}>Edit</a></td>
+        <td><a href={{ url_for('manage.delete',id=p.id) }}>Delete</a></td>
+    </tr>
     {% endfor %}
+    </table>
+    Server time: {{ now }}
 {% endblock %}

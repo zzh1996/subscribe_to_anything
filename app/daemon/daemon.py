@@ -26,9 +26,11 @@ def processtask(page,data):
         text=download(page.url,page.ua,page.referer,page.cookie,page.method,page.postdata)
     except Exception as e:
         print(page.id,page.name,type(e).__name__,file=sys.stderr)
+        page.update_check(type(e).__name__)
         return
     if not data:
         data.append(text)
+        page.update_check('First check')
     else:
         #print(text.splitlines(True),file=sys.stderr)
         if data[0]!=text: #page changed!
@@ -42,7 +44,9 @@ def processtask(page,data):
             elif page.watch_type=='keyword':
                 pass
             data[0]=text
-
+            page.update_check('Changed')
+        else:
+            page.update_check('Not changed')
 
 class Daemon():
     def __init__(self):
