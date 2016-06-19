@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 from app.forms import *
 from app.models import *
 from app.mail import *
-from app import db
+from app import app
 from app.download import *
 from datetime import datetime
 
@@ -14,7 +14,11 @@ manage = Blueprint('manage', __name__)
 @login_required
 def index():
     pages = current_user.pages
-    return render_template('manage.html', user=current_user, pages=pages, now=datetime.now())
+    if app.config['FREQ_SECOND']:
+        unit = 'sec'
+    else:
+        unit = 'min'
+    return render_template('manage.html', user=current_user, pages=pages, now=datetime.now(), unit=unit)
 
 
 @manage.route('/add/', methods=['POST', 'GET'])
