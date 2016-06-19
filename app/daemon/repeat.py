@@ -1,5 +1,6 @@
 from threading import Timer, Lock
 
+
 class Repeater():
     def __init__(self, interval, function, *args, **kwargs):
         self._lock = Lock()
@@ -29,8 +30,8 @@ class Repeater():
         self._timer.cancel()
         self._lock.release()
 
-def run_once(function,*args,**kwargs):
-    timer=Timer(0,function,args,kwargs)
+
+def run_once(function, *args, **kwargs):
+    timer = Timer(0, function, args, kwargs)
     timer.setDaemon(True)
     timer.start()
-

@@ -1,5 +1,5 @@
 SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://sta:sta@localhost/sta?charset=utf8'
-DEBUG=True
+DEBUG = True
 SECRET_KEY = 'secret-key'
 
 MAIL_ENABLE = True
@@ -12,4 +12,3 @@ MAIL_PASSWORD = ''
 MAIL_DEFAULT_SENDER = 'sta@mail.sqrt-1.me'
 
 FREQ_SECOND = False
-
