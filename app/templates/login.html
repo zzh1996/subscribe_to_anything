@@ -1,11 +1,22 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/utils.html" as util %}
+
+{% block title %}Subscribe to Anything Login{% endblock %}
+
 {% block content %}
-    <h3>Log in</h3>
-    <form method='post' action='/user/login/'>
-        {{ form.csrf_token }}
-        {{ form.email.label }} {{ form.email() }}<br>
-        {{ form.password.label }} {{ form.password() }}<br>
-        <button type='submit'>Log in</button>
-    </form>
-    <a href={{ url_for('user.register') }}>Register new user</a>
+{{util.flashed_messages(dismissible=True)}}
+<div class="container">
+  <h1>{{ self.title() }}</h1>
+
+  <div>
+    {{ wtf.quick_form(form) }}
+  </div>
+  <h4>
+    <p></p>
+    <p>
+      <a href={{ url_for('user.register') }}>Register new user</a>
+    </p>
+  </h4>
+</div>
 {% endblock %}

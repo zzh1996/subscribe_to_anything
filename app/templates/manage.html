@@ -1,10 +1,17 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/utils.html" as util %}
+
+{% block title %}Manage your subscriptions{% endblock %}
+
 {% block content %}
-    <h3>Manage your subscriptions</h3>
-    Current user: {{ user.email }} <a href={{ url_for('user.logout') }}>Log out</a><br><br>
-    <a href={{ url_for('manage.add') }}>New subscription</a><br>
-    Current subscriptions({{ pages|length }}):<br>
-    <table border=1 cellspacing=0>
+{{util.flashed_messages(dismissible=True)}}
+<div class="container">
+    <h1>{{ self.title() }}</h1>
+    Current user: <code>{{ user.email }}</code> <a class="btn btn-sm btn-default" type="button" href={{ url_for('user.logout') }}>Log out</a><br><br>
+    <a class="btn btn-default" type="button" href={{ url_for('manage.add') }}>New subscription</a><br>
+    <h4>Current subscriptions({{ pages|length }}):</h4>
+    <table class="table">
     <tr>
         <th>Name</th>
         <th>URL</th>
@@ -22,11 +29,12 @@
         <td>{{ p.freq}}</td>
         <td>{{ p.last_check }}</td>
         <td>{{ p.last_status }}</td>
-        <td><a href={{ url_for('manage.test',id=p.id) }}>Test</a></td>
-        <td><a href={{ url_for('manage.edit',id=p.id) }}>Edit</a></td>
-        <td><a href={{ url_for('manage.delete',id=p.id) }}>Delete</a></td>
+        <td><a class="btn btn-sm btn-info" type="button" href={{ url_for('manage.test',id=p.id) }}>Test</a></td>
+        <td><a class="btn btn-sm btn-warning" type="button" href={{ url_for('manage.edit',id=p.id) }}>Edit</a></td>
+        <td><a class="btn btn-sm btn-danger" type="button" href={{ url_for('manage.delete',id=p.id) }}>Delete</a></td>
     </tr>
     {% endfor %}
     </table>
     Server time: {{ now }}
+</div>
 {% endblock %}

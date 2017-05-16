@@ -1,21 +1,16 @@
-{% from "_form.html" import render_field %}
-{% extends "layout.html" %}
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/utils.html" as util %}
+
+{% block title %}New subscription{% endblock %}
+
 {% block content %}
-    <h3>New subscription</h3>
-    <form method='post' action='/manage/add/'>
-        <dl>
-            {{ form.csrf_token }}
-            {{ render_field(form.name) }}
-            {{ render_field(form.url) }}
-            {{ render_field(form.ua) }}
-            {{ render_field(form.referer) }}
-            {{ render_field(form.cookie) }}
-            {{ render_field(form.method) }}
-            {{ render_field(form.postdata) }}
-            {{ render_field(form.freq) }}
-            {{ render_field(form.watch_type) }}
-            {{ render_field(form.notify_content) }}
-        </dl>
-        <button type='submit'>Submit</button>
-    </form>
+{{util.flashed_messages(dismissible=True)}}
+<div class="container">
+  <h1>{{ self.title() }}</h1>
+
+  <div>
+    {{ wtf.quick_form(form) }}
+  </div>
+</div>
 {% endblock %}

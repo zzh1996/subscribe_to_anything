@@ -24,8 +24,7 @@ def index():
 @manage.route('/add/', methods=['POST', 'GET'])
 @login_required
 def add():
-    form = AddForm()
-    error = ''
+    form = AddForm(request.form, Page('','','','','','','GET','change','diff',10,None))
     if request.method == 'POST':
         if form.validate_on_submit():
             page = Page(form['name'].data,
@@ -42,7 +41,7 @@ def add():
                         )
             page.save()
             return redirect(url_for('manage.index'))
-    return render_template('add.html', form=form, error=error)
+    return render_template('add.html', form=form)
 
 
 @manage.route('/delete/<int:id>')
@@ -58,7 +57,6 @@ def delete(id):
 @manage.route('/edit/<int:id>', methods=['POST', 'GET'])
 @login_required
 def edit(id):
-    error = ''
     page = Page.query.get(id)
     if not page or page.user != current_user:
         return redirect(url_for('manage.index'))
@@ -77,7 +75,7 @@ def edit(id):
             page.freq = form['freq'].data
             page.save()
             return redirect(url_for('manage.index'))
-    return render_template('edit.html', form=form, error=error, id=page.id)
+    return render_template('edit.html', form=form, id=page.id)
 
 
 @manage.route('/test/<int:id>', methods=['POST', 'GET'])
@@ -90,4 +88,4 @@ def test(id):
         text = download(page.url, page.ua, page.referer, page.cookie, page.method, page.postdata)
     except Exception as e:
         text = type(e).__name__
-    return Response(text, mimetype='text/plain')
+    return render_template('test.html', text=text)

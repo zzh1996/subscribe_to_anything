@@ -2,15 +2,13 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% import "bootstrap/utils.html" as util %}
 
-{% block title %}Edit subscription{% endblock %}
+{% block title %}Test Result{% endblock %}
 
 {% block content %}
 {{util.flashed_messages(dismissible=True)}}
 <div class="container">
   <h1>{{ self.title() }}</h1>
 
-  <div>
-    {{ wtf.quick_form(form) }}
-  </div>
+  <pre>{{ text }}</pre>
 </div>
 {% endblock %}

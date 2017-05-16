@@ -5,6 +5,7 @@ home = Blueprint('home', __name__)
 
 
 @home.route('/')
-@login_required
 def index():
+    if not current_user.is_authenticated:
+        return redirect(url_for('user.login'))
     return redirect(url_for('manage.index'))

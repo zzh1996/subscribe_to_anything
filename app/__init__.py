@@ -9,6 +9,11 @@ import os
 app = Flask(__name__)
 app.config.from_object('config.default')
 db = SQLAlchemy(app)
+
+from flask_bootstrap import Bootstrap
+
+Bootstrap(app)
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'user.login'
