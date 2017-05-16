@@ -3,6 +3,7 @@ flask-WTF
 flask-SQLAlchemy
 flask-login
 flask-mail
+flask-bootstrap
 bs4
 termcolor
 flask-mysqldb
