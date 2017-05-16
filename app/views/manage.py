@@ -24,7 +24,7 @@ def index():
 @manage.route('/add/', methods=['POST', 'GET'])
 @login_required
 def add():
-    form = AddForm(request.form, Page('','','','','','','GET','change','diff',10,None))
+    form = AddForm(request.form, Page('','','','','','','GET','change','','diff',10,None))
     if request.method == 'POST':
         if form.validate_on_submit():
             page = Page(form['name'].data,
@@ -35,6 +35,7 @@ def add():
                         form['cookie'].data,
                         form['method'].data,
                         form['watch_type'].data,
+                        form['keyword'].data,
                         form['notify_content'].data,
                         form['freq'].data,
                         current_user
@@ -71,6 +72,7 @@ def edit(id):
             page.cookie = form['cookie'].data
             page.method = form['method'].data
             page.watch_type = form['watch_type'].data
+            page.keyword = form['keyword'].data
             page.notify_content = form['notify_content'].data
             page.freq = form['freq'].data
             page.save()

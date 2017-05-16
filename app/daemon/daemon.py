@@ -37,15 +37,14 @@ def processtask(page, data):
     else:
         # print(text.splitlines(True),file=sys.stderr)
         if data[0] != text:  # page changed!
-            if page.watch_type == 'change':
+            if page.watch_type == 'change' or (
+                    page.watch_type == 'keyword' and page.keyword in text and not page.keyword in data[0]):
                 notify = gendiff(data[0], text, page.notify_content) + '\n\n' + page.url
                 send_mail(
                     page.name + ' - subscribe to anything',
                     notify,
                     page.email()
                 )
-            elif page.watch_type == 'keyword':
-                pass
             data[0] = text
             page.update_check('Changed')
         else:

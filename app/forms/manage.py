@@ -18,7 +18,8 @@ class AddForm(Form):
         unit = '(minutes)'
     freq = IntegerField('Frequency' + unit, validators=[DataRequired(), NumberRange(1, 100000)])
     watch_type = SelectField('Send mail when',
-                            choices=[('change', 'Page changes'), ('keyword', 'Keyword detected (Not supported yet)')])
+                            choices=[('change', 'Page changes'), ('keyword', 'Keyword detected')])
+    keyword = StringField('Keyword')
     notify_content = SelectField('Mail content',
                                 choices=[('diff', 'Insertions and deletions (Diff)'), ('new', 'New content'),
                                          ('all', 'Entire new page')])

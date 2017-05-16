@@ -18,13 +18,14 @@ class Page(db.Model):
     cookie = db.Column(db.Text)
     method = db.Column(db.Enum('GET', 'POST'))
     watch_type = db.Column(db.Enum('change', 'keyword'))
+    keyword = db.Column(db.Text)
     notify_content = db.Column(db.Enum('diff', 'new', 'all'))
     freq = db.Column(db.Integer)
     last_check = db.Column(db.DateTime)
     last_status = db.Column(db.Text)
     user = db.relationship('User', backref=db.backref('pages'))
 
-    def __init__(self, name, url, postdata, ua, referer, cookie, method, watch_type, notify_content, freq, user):
+    def __init__(self, name, url, postdata, ua, referer, cookie, method, watch_type, keyword, notify_content, freq, user):
         self.name = name
         self.url = url
         self.postdata = postdata
@@ -33,6 +34,7 @@ class Page(db.Model):
         self.cookie = cookie
         self.method = method
         self.watch_type = watch_type
+        self.keyword = keyword
         self.notify_content = notify_content
         self.freq = freq
         self.user = user
